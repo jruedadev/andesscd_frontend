@@ -1,0 +1,22 @@
+<div class="col-12">
+    <h1>Artículos</h1>
+    <a [routerLink]="['/post/create']" class="btn btn-info">Crear Post</a>
+</div>
+<div class="row d-flex justify-content-center align-items-center">
+    <div class="card col-3 m-3 post_card" *ngFor="let item of posts">
+        <img [src]="item.banner" class="card-img-top" alt="Banner image from post" class="cover">
+        <div class="card-body">
+            <h4 class="card-title">{{ item.title }}</h4>
+            <p class="card-text">{{ item.short_description }}</p>
+            <a [routerLink]="['/article', item.id]" class="btn btn-primary mx-2">View more</a>
+            <button (click)="deletePost(item.id)" class="btn btn-danger mx-2">Delete post</button>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" [ngClass]="{'active': item.active, 'disabled': !item.url}"
+                *ngFor="let item of paginator"><a class="page-link" (click)="paginate(item.url)">{{ item.label }}</a>
+            </li>
+        </ul>
+    </nav>
+</div>
