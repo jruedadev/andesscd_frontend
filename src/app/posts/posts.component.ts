@@ -29,7 +29,7 @@ export class PostsComponent implements OnInit {
     this.postService.getPosts(uri).subscribe((response: any) => {
       this.posts = response.data.data;
       this.paginator = response.data.links;
-      console.log(this.posts, response.data);
+      // console.log(this.posts, response.data);
     });
   }
 
@@ -41,7 +41,7 @@ export class PostsComponent implements OnInit {
         this.postService.getPosts("api/blog").subscribe((response: any) => {
           this.posts = response.data.data;
           this.paginator = response.data.links;
-          console.log(this.posts, response.data);
+          // console.log(this.posts, response.data);
         });
         alert('Delete successful');
       },

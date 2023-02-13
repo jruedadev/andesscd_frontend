@@ -1,4 +1,49 @@
-<h1 *ngIf="this.id === 'create'">Crear Post</h1>
+<h1 *ngIf="this.id == null">Crear Post</h1>
+<h1 *ngIf="this.id !== null">Actualizar Post {{ post.id }}</h1>
 <form class="form">
-    
+    <div class="form-group my-3">
+        <label for="title">Título</label>
+        <input type="text" name="title" id="title" class="form-control" placeholder="Título" aria-describedby="helpId"
+            [(ngModel)]="post.title">
+        <small id="helpId" class="text-muted">Ingrese el título del Post</small>
+    </div>
+
+    <div class="form-group my-3">
+        <label for="content">Contenido</label>
+        <textarea class="form-control" name="content" id="content" rows="3" [(ngModel)]="post.content"></textarea>
+        <small id="helpId" class="text-muted">Ingrese el contenido del Post</small>
+    </div>
+
+    <div class="form-group my-3">
+        <label for="content">Descripción corta</label>
+        <textarea class="form-control" name="content" id="content" rows="3"
+            [(ngModel)]="post.short_description"></textarea>
+        <small id="helpId" class="text-muted">Ingrese la descripción corta del Post</small>
+    </div>
+
+    <div class="form-group my-3">
+        <label class="custom-file">
+            <input type="file" name="banner" id="banner" placeholder="Seleccionar portada" class="form-control"
+                aria-describedby="fileHelpId" [(ngModel)]="file" (change)="onImageChangeFromFile($event)">
+            <span class="custom-file-control"></span>
+        </label>
+        <br>
+        <small id="fileHelpId" class="form-text text-muted">
+            {{ this.file == undefined ? 'Seleccionar Portada' :
+            'Archivo válido.' }}
+        </small>
+    </div>
+
+    <div class="form-group my-3">
+        <label for="author">Autor</label>
+        <select class="form-select" name="author" id="author" [(ngModel)]="user_id" (change)="setUserId()">
+            <option *ngFor="let author of authors" [ngValue]="author.id"
+                [selected]="(author.id == post.author.id)">
+                {{author.name}}</option>
+        </select>
+    </div>
+
+    <button name="submit" id="submit" class="btn btn-primary" type="button" (click)="submitForm()">
+        {{ (this.id !== 0 && this.id !== null) ? "Actualizar Post" : "Crear Post" }}
+    </button>
 </form>

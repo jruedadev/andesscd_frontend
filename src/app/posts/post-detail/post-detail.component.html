@@ -1,1 +1,19 @@
-<p>post-detail works!</p>
+<div *ngIf="post">
+    <img [src]="post.banner" alt="Banner Image" class="banner">
+    <div class="row">
+        <div class="col-12 m-3">
+            <a [routerLink]="['/post/edit/', post.id]" class="btn btn-primary mx-2">Edit</a>
+            <button (click)="deletePost(post.id)" class="btn btn-danger mx-2">Delete</button>
+        </div>
+        <div class="col-12">
+            <h1>{{ post.title }}</h1>
+            <h2>{{ (post.author !== null) ? post.author.name : "" }}</h2>
+            <p>Published: {{ post.created_at }} </p>
+
+            <p>
+                {{ post.content }}
+            </p>
+
+        </div>
+    </div>
+</div>

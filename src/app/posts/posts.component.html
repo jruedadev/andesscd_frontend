@@ -8,7 +8,7 @@
         <div class="card-body">
             <h4 class="card-title">{{ item.title }}</h4>
             <p class="card-text">{{ item.short_description }}</p>
-            <a [routerLink]="['/article', item.id]" class="btn btn-primary mx-2">View more</a>
+            <a [routerLink]="['/post/detail/', item.id]" class="btn btn-primary mx-2">View more</a>
             <button (click)="deletePost(item.id)" class="btn btn-danger mx-2">Delete post</button>
         </div>
     </div>
